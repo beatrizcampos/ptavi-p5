@@ -26,14 +26,15 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
     Es mayor UDP (con un porcentaje de 96.23% frente a un 2.10% de TCP).
     Si es consistente, puesto que UDP no requiere establecimiento previo de conexión, asentimientos continuos ni control de flujo constante y al encontrarnos ante una aplicación en tiempo real, todas estas características son favorables. 
  ** ¿Qué otros protocolos podemos ver en la jerarquía de protocolos?
-    Protocolos que vemos: DNS, TCP, HTTP, SIP, RTP, RTCP, ARP, ICMP, UDP, STUN. 
-
+    Protocolos que vemos: DNS, TCP, HTTP, SIP, RTP, RTCP, ARP, ICMP, UDP, STUN.  
 
 
 4. Observa por encima el flujo de tramas en el menú de Statistics en IO Graphs. La captura que estamos viendo incluye desde la inicialización (registro) de la aplicación hasta su finalización, con una llamada entremedias.
  ** Filtra por sip para conocer cuándo se envían paquetes SIP. ¿En qué segundos tienen lugar esos envíos?
+    7.4s (registro), 14.5s (llamada que se repite en el instante 16.3s), 38.3s (BYE), 55.5 s.
+    
  ** Y los paquetes con RTP, ¿cuándo se envían?
-
+    Se envían paquetes RTP desde los 17s hasta los 40s aproximádamente (durante la llamada).
 
 
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
