@@ -107,9 +107,14 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
 
 11. Una vez conectado, estudia el intercambio de tramas.
  ** ¿Qué protocolo(s) se utiliza(n)? ¿Para qué sirven estos protocolos?
+    Se utilizan RTP y RTCP. 
+    RTP (Real-Time Transport Protocol) es el protocolo básico de transporte que sirve para el tráfico multimedia en Internet en tiempo real y RTCP (Real Time Control Protocol) es un protocolo que sirve para proporcionar informacion de control sobre la calidad de transmisión. 
  ** ¿Cuál es el tamaño de paquete de los mismos?
+    Para RTP son 214 bytes (1712 bits) y para RTCP 102 bytes (816 bits).
  ** ¿Se utilizan bits de padding?
+    No, porque el campo Padding aparece como False (Padding: False).
  ** ¿Cuál es la periodicidad de los paquetes que se envían?
+    
  ** ¿Cuántos bits/segundo estamos enviando?
 
 
