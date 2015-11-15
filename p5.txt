@@ -123,8 +123,12 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
 
 12. Vamos a ver más a fondo el intercambio RTP. En Telephony hay una opción RTP. Empecemos mirando los flujos RTP.
  ** ¿Cuántos flujos hay? ¿por qué?
+    Hay dos 2 flujos, uno de audio y otro de video.
  ** ¿Cuántos paquetes se pierden?
+    No se pierde ningún paquete (aparece Lost 0.0%)
  ** ¿Cuál es el valor máximo del delta? ¿Y qué es lo que significa el valor de delta?
+    El valor máximo de un flujo es de 1290.48 ms y para el otro 1290.44 ms.
+    El valor de delta se corresponde al retardo que sufre un paquete (es decir, el tiempo que tarda un paquete en llegar desde el origen al destino).
  ** ¿Cuáles son los valores de jitter (medio y máximo)? ¿Qué quiere decir eso? ¿Estamos ante una conversación de calidad?
 
 
