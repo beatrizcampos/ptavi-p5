@@ -132,30 +132,43 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
  ** ¿Cuáles son los valores de jitter (medio y máximo)? ¿Qué quiere decir eso? ¿Estamos ante una conversación de calidad?
 
 
+
 13. Elige un paquete RTP de audio. Analiza el flujo de audio en Telephony -> RTP -> Stream Analysis.
  ** ¿Cuánto valen el delta y el jitter para el primer paquete que ha llegado?
+    Ambos tienen un valor de 0.0
  ** ¿Podemos saber si éste es el primer paquete que nos han enviado?
+    No tenemos forma de saber si es el primero, porque puede que se haya perdido uno antes.
  ** Los valores de jitter son menores de 10ms hasta un paquete dado. ¿Cuál?
+    Hasta el paquete 246. A partir del paquete 247, incluido éste, los valores de jitter son mayores a 10ms.
  ** ¿A qué se debe el cambio tan brusco del jitter?
+    Se debe a que el valor del retardo, delta, cambia bruscamente (de 24.03 ms a 554.74 ms).
  ** ¿Es comparable este cambio con el tiempo desde la recepción del paquete anterior? ¿Por qué?
+    Sí, porque cómo hemos explicado en la respuesta anterior, el valor del retardo aumenta con respecto al paquete anterior.
  ** ¿Cuál es la dependencia entre el tiempo transcurrido desde el paquete anterior y el valor de jitter?
+    
 
 
 14. En Telephony selecciona el menú VoIP calls. Verás que se lista la llamada de voz IP capturada en una ventana emergente. Selecciona esa llamada y pulsa el botón Graph.
  ** ¿Cuánto dura la conversación?
+    La conversación dura 24.80289 segundos (39.229683 - 14.426793 = 24.80289 s).
  ** ¿Cuáles son sus SSRC? ¿Por qué hay varios SSRCs? ¿Hay CSRCs?
 
 
 15. Identifica la trama donde se finaliza la conversación.
  ** ¿Qué método SIP se utiliza?
+    Utiliza el método: BYE
  ** ¿En qué trama(s)?
+    Aparece en las siguientes tramas: 924,925,927 y 933.
  ** ¿Por qué crees que se envía varias veces?
 
 
 16. Finalmente, se cierra la aplicación de VozIP.
  ** ¿Por qué aparece una instrucción SIP del tipo REGISTER?
+    Porque enviamos el campo Expires con valor 0 para cerrar la sesión.    
  ** ¿En qué trama sucede esto?
+    En la trama 950.
  ** ¿En qué se diferencia con la instrucción que se utilizó con anterioridad (al principio de la sesión)?
+    En el campo Expires. Al comienzo de la sesion tenía un valor de 3600s y en esta instruccion lo tiene con un valor 0s.
 
 
 
