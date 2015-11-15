@@ -83,9 +83,13 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
 
 9. Fijémonos en las tramas siguientes a la número 46:
  ** ¿Se registra con éxito en el primer intento?
+    No.
  ** ¿Cómo sabemos si el registro se ha realizado correctamente o no?
+    Sabemos que se ha realizado correctamente cuando nos llega un 200 OK.
  ** ¿Podrías identificar las diferencias entre el primer intento y el segundo de registro? (fíjate en el tamaño de los paquetes y mira a qué se debe el cambio)
+    Si nos fijamos en el tamaño de los paquetes, identificamos que en el primer REGISTER tenemos un frame length = 523 bytes (4184 bits) y en el segundo REGISTER un frame length = 712 bytes (5696 bits). Este segundo REGISTER es mayor puesto que se añade la autorizacion para poderse registrar.
  ** ¿Cuánto es el valor del tiempo de expiración de la sesión? Indica las unidades.
+    3600 s[segundos]
 
 
 10. Una vez registrados, podemos efectuar una llamada. Vamos a probar con el servicio de eco de Ekiga que nos permite comprobar si nos hemos conectado correctamente. El servicio de eco tiene la dirección sip:500@ekiga.net. Veamos el INVITE de cerca.
