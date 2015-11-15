@@ -94,9 +94,15 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
 
 10. Una vez registrados, podemos efectuar una llamada. Vamos a probar con el servicio de eco de Ekiga que nos permite comprobar si nos hemos conectado correctamente. El servicio de eco tiene la dirección sip:500@ekiga.net. Veamos el INVITE de cerca.
  ** ¿Puede verse el nombre del que efectúa la llamada, así como su dirección SIP?
+    Sí, aparecen ambas: 
+    From: "Gregorio Robles" <sip:grex@ekiga.net>
+    El nombre correspondería con: "Gregorio Robles" y su dirección SIP: grex@ekiga.net.
  ** ¿Qué es lo que contiene el cuerpo de la trama? ¿En qué formato/protocolo está?
+    El cuerpo de la trama (Message Body) contiene los parámetros de inicialización en formato SDP (Session Description Protocol).
  ** ¿Tiene éxito el primer intento? ¿Cómo lo sabes?
+    No tiene éxito, porque no recibe 200 OK y vuelve a enviar el INVITE.
  ** ¿En qué se diferencia el segundo INVITE más abajo del primero? ¿A qué crees que se debe esto?
+    La principal diferencia es el campo Proxy-Authorization que aparece en el segundo INVITE y no en el primero. Esto se debe a que recibe 407: Proxy Authetication (es decir, necesita identificarse).
 
 
 11. Una vez conectado, estudia el intercambio de tramas.
