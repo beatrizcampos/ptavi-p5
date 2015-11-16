@@ -114,9 +114,11 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
  ** ¿Se utilizan bits de padding?
     No, porque el campo Padding aparece como False (Padding: False).
  ** ¿Cuál es la periodicidad de los paquetes que se envían?
-    
+    Periodicidad en los paquetes RTP de 0.02 segundos aproximádamente.
  ** ¿Cuántos bits/segundo estamos enviando?
-
+    8000 bits/segundos.
+    (bits totales que envio: 214 - (16+16+16+6) = 214 - 54 = 160 bits , 160 bits/0.02 segundos = 8000 bits/segundo)
+    
 
 
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
@@ -130,14 +132,16 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
     El valor máximo de un flujo es de 1290.48 ms y para el otro 1290.44 ms.
     El valor de delta se corresponde al retardo que sufre un paquete (es decir, el tiempo que tarda un paquete en llegar desde el origen al destino).
  ** ¿Cuáles son los valores de jitter (medio y máximo)? ¿Qué quiere decir eso? ¿Estamos ante una conversación de calidad?
-
-
+    Para un flujo tenemos: como jitter máximo 1290.44 y 42.50 como medio. Para el otro flujo tendríamos como jitter máximo y medio: 1290.48 y 153.24 respectivamente.
+    El jitter es un parámetro para determinar el tiempo de transmisión de los paquetes. Si tenemos un jitter alto, no estaremos ante una conversación de calidad.
+    Consideraremos 500 ms para buena calidad, en nuestro caso, si asumimos un jitter de 153.24 ms tenemos que tener en cuenta que el paquete tiene "ida y vuelta" por lo que estaremos ante un jitter muy alto y dejaremos poco lugar al retardo.
+    
 
 13. Elige un paquete RTP de audio. Analiza el flujo de audio en Telephony -> RTP -> Stream Analysis.
  ** ¿Cuánto valen el delta y el jitter para el primer paquete que ha llegado?
     Ambos tienen un valor de 0.0
  ** ¿Podemos saber si éste es el primer paquete que nos han enviado?
-    No tenemos forma de saber si es el primero, porque puede que se haya perdido uno antes.
+    Sí, porque si nos situamos en el primer paquete de RTP vemos que comenzamos a contar a partir de él el jitter y el delta.
  ** Los valores de jitter son menores de 10ms hasta un paquete dado. ¿Cuál?
     Hasta el paquete 246. A partir del paquete 247, incluido éste, los valores de jitter son mayores a 10ms.
  ** ¿A qué se debe el cambio tan brusco del jitter?
@@ -145,6 +149,7 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
  ** ¿Es comparable este cambio con el tiempo desde la recepción del paquete anterior? ¿Por qué?
     Sí, porque cómo hemos explicado en la respuesta anterior, el valor del retardo aumenta con respecto al paquete anterior.
  ** ¿Cuál es la dependencia entre el tiempo transcurrido desde el paquete anterior y el valor de jitter?
+    La variabilidad del retardo.
     
 
 
@@ -152,6 +157,10 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
  ** ¿Cuánto dura la conversación?
     La conversación dura 24.80289 segundos (39.229683 - 14.426793 = 24.80289 s).
  ** ¿Cuáles son sus SSRC? ¿Por qué hay varios SSRCs? ¿Hay CSRCs?
+    H.261 (video) aparece como SSRC: Synchronization Source identifier: 0x43306582 (1127245186)
+    G.711 (audio) tenemos Synchronization Source identifier: 0xbf4afd37 (3209362743)
+    Hay varios SSRC porque hay dos flujos (uno de video y otro de audio).
+    No hay CSRCs, ya que el campo Contributing source identifiers count está a cero.
 
 
 15. Identifica la trama donde se finaliza la conversación.
@@ -160,6 +169,7 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
  ** ¿En qué trama(s)?
     Aparece en las siguientes tramas: 924,925,927 y 933.
  ** ¿Por qué crees que se envía varias veces?
+    Para asegurarnos que llega, puesto que estamos ante UDP y es no fiable.
 
 
 16. Finalmente, se cierra la aplicación de VozIP.
