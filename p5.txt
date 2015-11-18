@@ -116,8 +116,8 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
  ** ¿Cuál es la periodicidad de los paquetes que se envían?
     Periodicidad en los paquetes RTP de 0.02 segundos aproximádamente.
  ** ¿Cuántos bits/segundo estamos enviando?
-    8000 bits/segundos.
-    (bits totales que envio: 214 - (16+16+16+6) = 214 - 54 = 160 bits , 160 bits/0.02 segundos = 8000 bits/segundo)
+    8000 bytes/segundos.
+    (bits totales que envio: 214 - (16+16+16+6) = 214 - 54 = 160 bytes , 160 bits/0.02 segundos = 8000 bytes/segundo que serían 64Kbps)
     
 
 
@@ -193,7 +193,6 @@ Captura una sesión SIP de una conversación con el número SIP sip:9999@qxip.ne
 
 17. Observa las diferencias en el inicio de la conversación entre el entorno del laboratorio y el del ejercicio anterior:
  ** ¿Es necesario el uso de DNS y STUN? ¿Por qué?
-    Sí, porque necesitamos DNS para la asignación de nombres de dominio a direcciones IP y STUN para encontrar nuestra dirección pública al estar bajo un router NAT.
  ** ¿Son diferentes el registro y la descripción de la sesión?
     No, son iguales.
 
